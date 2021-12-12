@@ -1,0 +1,33 @@
+/* General Style */
+
+html {
+    box-sizing: border-box;
+}
+
+*, 
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+}
+
+div {
+    margin: 0;
+    padding: 0;
+}
+
+/* Container Style */
+
+.container {
+    display: flex;
+    width: 60px;
+    height: 60px;
+    flex-direction: row wrap;
+}
+
+.box {
+}
