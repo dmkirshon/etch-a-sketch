@@ -24,10 +24,13 @@ div {
 
 .container {
     display: flex;
-    width: 60px;
-    height: 60px;
-    flex-direction: row wrap;
+    flex-flow: row wrap;
+    width: 240px;
 }
 
 .box {
+    background-color: green;
+    width: 60px;
+    height: 60px;
+    border: 1px black solid;
 }
