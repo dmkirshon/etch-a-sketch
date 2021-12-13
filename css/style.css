@@ -12,12 +12,27 @@ html {
 
 body {
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
 }
 
 div {
     margin: 0;
     padding: 0;
+}
+
+button {
+    margin: 0;
+    padding: 0;
+}
+
+/* Clear Button Style */
+
+.clearButton {
+    margin: 1em 0;
 }
 
 /* Container Style */
@@ -29,8 +44,9 @@ div {
 }
 
 .box {
-    background-color: green;
+    background-color: grey;
     width: 60px;
     height: 60px;
     border: 1px black solid;
 }
+

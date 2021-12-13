@@ -1,4 +1,7 @@
 const containerDiv = document.querySelector('.container');
+const clearButton = document.querySelector('.clearButton');
+const defaultColor = 'grey';
+const filledColor = 'aqua';
 
 // create boxs in container to create etch pad
 
@@ -12,9 +15,20 @@ for(i = 0; i < 16; i++) {
 // etch boxes with a color when hovered over to create pixel art
 
 containerDiv.childNodes.forEach(box => {
-    box.addEventListener('mouseover', changeColor);
+    box.addEventListener('mouseover', fillColor);
 });
 
-function changeColor() {
-    this.style.backgroundColor = 'blue';
+function fillColor() {
+    this.style.backgroundColor = filledColor;
+}
+
+// clear button to default back to a clear grid
+
+clearButton.addEventListener('click', clearGrid);
+
+function clearGrid() {
+    containerDiv.childNodes.forEach(box => {
+        box.style.backgroundColor = defaultColor;
+        console.log('clear');
+    });
 }
