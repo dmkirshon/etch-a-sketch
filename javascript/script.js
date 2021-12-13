@@ -3,8 +3,15 @@ const clearButton = document.querySelector('.clearButton');
 const containerWidth = containerDiv.offsetWidth;
 const defaultColor = 'grey';
 const filledColor = 'aqua';
-let gridSize;
-let boxLength;
+let gridSize = 0;
+let boxLength = 0;
+
+function init() {
+    promptGridSize();
+    createBoxes();
+    etchBoxes();
+};
+init();
 
 // prompt to ask user how big the grid should be, don't make too many boxes
 // so set max to 100 on one side
@@ -18,40 +25,41 @@ function promptGridSize() {
     }  
     while(0 >= gridSize || gridSize >= 101)
 
+    boxLength = containerWidth/gridSize;
+}
 
-boxLength = containerWidth/gridSize;
 
 
 // create boxs in container to create etch pad
-
-for(i = 0; i < gridSize*gridSize; i++) {
-    let newDiv = document.createElement('div');
-    newDiv.classList.toggle('box');
-    newDiv.style.width = `${boxLength}px`;
-    newDiv.style.height = `${boxLength}px`;
-    containerDiv.appendChild(newDiv);
+function createBoxes() {
+    for(i = 0; i < gridSize*gridSize; i++) {
+        let newDiv = document.createElement('div');
+        newDiv.classList.toggle('box');
+        newDiv.style.width = `${boxLength}px`;
+        newDiv.style.height = `${boxLength}px`;
+        containerDiv.appendChild(newDiv);
+    }
 }
 
 
 // etch boxes with a color when hovered over to create pixel art
-
-containerDiv.childNodes.forEach(box => {
-    box.addEventListener('mouseover', fillColor);
-});
+function etchBoxes () {
+    containerDiv.childNodes.forEach(box => {
+        box.addEventListener('mouseover', fillColor);
+    });
+}
 
 function fillColor() {
     this.style.backgroundColor = filledColor;
 }
-}
+
 // clear button to default back to a clear grid
 
 clearButton.addEventListener('click', clearGrid);
 
 function clearGrid() {
-    containerDiv.childNodes.forEach(box => {
-        box.style.backgroundColor = defaultColor;
-    });
-    promptGridSize();
+    while (containerDiv.firstChild) {
+        containerDiv.removeChild(containerDiv.firstChild);
+    }
+    init();
 }
-
-promptGridSize();
