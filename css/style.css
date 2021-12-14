@@ -36,12 +36,6 @@ button {
     padding: 0;
 }
 
-/* Clear Button Style */
-
-.clearButton {
-    margin: 1em 0;
-}
-
 /* Container Style */
 
 .container {
@@ -54,5 +48,27 @@ button {
 .box {
     background-color: grey;
     border: 1px solid black;
+}
+
+/* Control Style */
+.control {
+    margin-top: 1em;
+    width: 550px;
+    background-color: rgba(255, 255, 255, 0.158);
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.control button {
+    margin: 1em 0;
+    padding: .5em;
+    background-color: lightseagreen;
+    border-radius: 5px;
+}
+
+.clearButton {
+    
 }
 
