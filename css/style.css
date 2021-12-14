@@ -11,12 +11,19 @@ html {
 }
 
 body {
+    width: 100vw;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     margin: 0;
     padding: 0;
+    background: linear-gradient(200deg, rgba(170, 66, 170, 0.507) 0%, rgba(102, 41, 41, 0) 50%),
+                linear-gradient(0deg, rgba(170, 66, 170, 0.507) 0%, rgba(102, 41, 41, 0) 50%),
+                linear-gradient(0deg,rgba(128, 0, 128, 0.213) 0%, rgba(0, 128, 128, 0.774) 50%),
+                linear-gradient(200deg,rgba(128, 0, 128, 0.179) 0%, rgba(0, 128, 128, 0.774) 50%);
+    background-repeat: repeat;
 }
 
 div {
