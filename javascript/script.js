@@ -6,6 +6,9 @@ const filledColor = 'aqua';
 let gridSize = 0;
 let boxLength = 0;
 
+
+// Run initial grid creation  
+
 function init() {
     promptGridSize();
     createBoxes();
@@ -13,8 +16,8 @@ function init() {
 };
 init();
 
-// prompt to ask user how big the grid should be, don't make too many boxes
-// so set max to 100 on one side
+// Prompt user for Grid width, max 100 blocks
+
 function promptGridSize() {
     do{
         gridSize = prompt('Please the width of the grid (max 100):', '64');
