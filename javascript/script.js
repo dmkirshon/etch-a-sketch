@@ -1,5 +1,5 @@
 const containerDiv = document.querySelector('.container');
-const clearButton = document.querySelector('.clearButton');
+const clearButton = document.querySelector('.clear-button');
 const containerWidth = containerDiv.offsetWidth;
 const defaultColor = 'grey';
 const filledColor = 'aqua';
