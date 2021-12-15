@@ -1,5 +1,6 @@
 const containerDiv = document.querySelector('.container');
 const clearButton = document.querySelector('.clear-button');
+const etchStyleButton = document.querySelector('.etch-style-button');
 const containerWidth = containerDiv.offsetWidth;
 const defaultColor = 'grey';
 const filledColor = 'aqua';
@@ -65,4 +66,22 @@ function clearGrid() {
         containerDiv.removeChild(containerDiv.firstChild);
     }
     init();
+}
+
+// Change etch style from mouse over to mouse down for easier etching for user
+
+etchStyleButton.addEventListener('click', changeEtchStyle);
+
+function changeEtchStyle() {
+    containerDiv.childNodes.forEach(box => {
+        box.removeEventListener('mouseover', fillColor);
+        box.addEventListener('mousedown', etchBoxes);
+        box.addEventListener('mouseup', stopEtchBoxes);
+    });
+}
+
+function stopEtchBoxes() {
+    containerDiv.childNodes.forEach(box => {
+        box.removeEventListener('mouseover', etchBoxes);
+    });
 }
