@@ -19,7 +19,7 @@ let clickEtchOptionSelected = false;
 
 // Run initial grid creation  
 function init() {
-    promptGridSize();block comments
+    promptGridSize();
     createBoxes();
     etchBoxes();
 };
