@@ -39,6 +39,7 @@ function createBoxes() {
     for(i = 0; i < gridSize*gridSize; i++) {
         let newDiv = document.createElement('div');
         newDiv.classList.toggle('box');
+        newDiv.setAttribute('draggable', false);
         newDiv.style.width = `${boxLength}px`;
         newDiv.style.height = `${boxLength}px`;
         containerDiv.appendChild(newDiv);
@@ -75,13 +76,26 @@ etchStyleButton.addEventListener('click', changeEtchStyle);
 function changeEtchStyle() {
     containerDiv.childNodes.forEach(box => {
         box.removeEventListener('mouseover', fillColor);
-        box.addEventListener('mousedown', etchBoxes);
+        box.addEventListener('mousedown', clickEtchBoxes);
         box.addEventListener('mouseup', stopEtchBoxes);
     });
+    
 }
 
+
+// Etch boxes when box selected and drag across grid
+function clickEtchBoxes(e) {
+    // stops the mousedown turning into a drag event
+    e.preventDefault();
+    // fills in the box where mouse is located
+    this.style.backgroundColor = filledColor;
+    // etches all the other boxes while mouse is down
+    etchBoxes();
+}
+
+// Stop etching boxes when invoked
 function stopEtchBoxes() {
     containerDiv.childNodes.forEach(box => {
-        box.removeEventListener('mouseover', etchBoxes);
+        box.removeEventListener('mouseover', fillColor);
     });
 }
