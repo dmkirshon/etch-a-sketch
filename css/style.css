@@ -25,7 +25,10 @@ body {
                 linear-gradient(0deg, rgba(170, 66, 170, 0.507) 0%, rgba(102, 41, 41, 0) 50%),
                 linear-gradient(0deg,rgba(128, 0, 128, 0.213) 0%, rgba(0, 128, 128, 0.774) 50%),
                 linear-gradient(200deg,rgba(128, 0, 128, 0.179) 0%, rgba(0, 128, 128, 0.774) 50%);
-    background-repeat: repeat;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+
 }
 
 h1 {
