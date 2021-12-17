@@ -9,9 +9,11 @@
 const containerDiv = document.querySelector('.container');
 const clearButton = document.querySelector('.clear-button');
 const etchStyleButton = document.querySelector('.etch-style-button');
+const eraserButton = document.querySelector('.eraser-button');
 const containerWidth = containerDiv.offsetWidth;
 const defaultColor = 'grey';
-const filledColor = 'aqua';
+const defaultFilledColor = 'aqua';
+let filledColor = defaultFilledColor;
 let gridSize = 0;
 let boxLength = 0;
 let clickEtchOptionSelected = false;
@@ -62,6 +64,7 @@ function etchBoxes() {
 }
 
 function fillColor() {
+    console.log(filledColor);
     this.style.backgroundColor = filledColor;
 }
 
@@ -116,4 +119,19 @@ function stopEtchBoxes() {
     containerDiv.childNodes.forEach(box => {
         box.removeEventListener('mouseover', fillColor);
     });
+}
+
+// Eraser button turns etched box back to default grid color
+
+eraserButton.addEventListener('click', changeEtchErase);
+
+function changeEtchErase() {
+    eraserIsOn = (eraserButton.textContent === 'Eraser')
+    if (eraserIsOn) {
+        eraserButton.textContent = 'Etch';
+        filledColor = defaultColor;
+    } else {
+        eraserButton.textContent = 'Eraser';
+        filledColor = defaultFilledColor;
+    }
 }
