@@ -10,7 +10,9 @@ const containerDiv = document.querySelector('.container');
 const clearButton = document.querySelector('.clear-button');
 const etchStyleButton = document.querySelector('.etch-style-button');
 const eraserButton = document.querySelector('.eraser-button');
-const etchColorInput = document.querySelector('.etch-color')
+const etchColorInput = document.querySelector('.etch-color');
+const etchColorButton = document.querySelector('.etch-color-button');
+const etchColorLabel = document.querySelector('.etch-color-label');
 const containerWidth = containerDiv.offsetWidth;
 const defaultColor = 'grey';
 const defaultFilledColor = 'aqua';
@@ -142,4 +144,27 @@ etchColorInput.addEventListener('change', changeEtchColor);
 
 function changeEtchColor() {
     filledColor = this.value;
+    etchColorButton.style.backgroundColor = filledColor;
+    const filledColorRGB = hexToRgb(filledColor);
+
+    // brightness value https://www.w3.org/TR/AERT/#color-contrast
+    const brightness =    ((parseInt(filledColorRGB.r) * 299) +
+            (parseInt(filledColorRGB.g) * 587) +
+            (parseInt(filledColorRGB.b) * 114)) / 1000;
+    if(brightness < 125) {
+        etchColorLabel.style.color = 'white';
+    }
+    else {
+        etchColorLabel.style.color = 'black';
+    }
 }
+
+// Convert hex to rgb to evaluate color values
+function hexToRgb(hex) {
+    var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return result ? {
+      r: parseInt(result[1], 16),
+      g: parseInt(result[2], 16),
+      b: parseInt(result[3], 16)
+    } : null;
+  }

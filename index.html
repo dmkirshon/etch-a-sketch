@@ -13,15 +13,16 @@
     <div class="container" draggable="false"></div>
     <div class="control">
         <div class="control-buttons">
-        <button class="clear-button">Clear Grid</button>
-        <button class="etch-style-button">Click-to-Etch</button>
-        <button class="eraser-button">Eraser</button>
-    </div> 
-    <div class="etch-color-container">
-            <input type="color" class="etch-color" name="etch-color" value="#00FFFF">
-    </div>
-    <div class="control-grid">
-    </div>
+            <button class="clear-button">Clear Grid</button>
+            <button class="etch-style-button">Click-to-Etch</button>
+            <button class="eraser-button">Eraser</button>
+            <button class="etch-color-button">
+                <label class="etch-color-label" for="etch-color">Etch Color</label>
+                <input id="etch-color" type="color" class="etch-color" name="etch-color" value="#00FFFF">
+            </button>
+        </div>
+        <div class="control-grid">
+        </div>
     </div>
 </body>
 </html>
