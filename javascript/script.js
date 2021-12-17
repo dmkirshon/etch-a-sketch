@@ -10,6 +10,7 @@ const containerDiv = document.querySelector('.container');
 const clearButton = document.querySelector('.clear-button');
 const etchStyleButton = document.querySelector('.etch-style-button');
 const eraserButton = document.querySelector('.eraser-button');
+const etchColorInput = document.querySelector('.etch-color')
 const containerWidth = containerDiv.offsetWidth;
 const defaultColor = 'grey';
 const defaultFilledColor = 'aqua';
@@ -64,7 +65,6 @@ function etchBoxes() {
 }
 
 function fillColor() {
-    console.log(filledColor);
     this.style.backgroundColor = filledColor;
 }
 
@@ -134,4 +134,12 @@ function changeEtchErase() {
         eraserButton.textContent = 'Eraser';
         filledColor = defaultFilledColor;
     }
+}
+
+// Change the color of the etch from the default fill
+
+etchColorInput.addEventListener('change', changeEtchColor);
+
+function changeEtchColor() {
+    filledColor = this.value;
 }

@@ -50,6 +50,11 @@ button {
     padding: 0;
 }
 
+input {
+    margin: 0;
+    padding: 0;
+}
+
 /* Container Style */
 
 .container {
@@ -89,4 +94,13 @@ button {
 
 .control-grid {
     
+}
+
+.etch-color {
+}
+
+.etch-color label {
+    size: auto;
+    margin: 0;
+    padding: 0;
 }
