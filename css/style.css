@@ -97,10 +97,19 @@ input {
 }
 
 .etch-color {
+    padding: 0;
+    width: 150%;
+    height: 150%;
+    margin: -25%;
+    
 }
 
-.etch-color label {
-    size: auto;
-    margin: 0;
-    padding: 0;
+.etch-color-container {
+    overflow: hidden;
+    width: 2em;
+    height: 2em;
+    /* optional formatting below here */
+    border-radius: 50%;
+    box-shadow: 1px 1px 3px 0px grey;
+    margin: 1em;
 }
