@@ -13,6 +13,8 @@ const eraserButton = document.querySelector('.eraser-button');
 const etchColorInput = document.querySelector('.etch-color');
 const etchColorButton = document.querySelector('.etch-color-button');
 const etchColorLabel = document.querySelector('.etch-color-label');
+const gridSlider = document.querySelector('.grid-slider');
+const gridSliderValue = document.querySelector('.grid-slider-value');
 const containerWidth = containerDiv.offsetWidth;
 const defaultColor = 'grey';
 const defaultFilledColor = 'aqua';
@@ -24,26 +26,12 @@ let clickEtchOptionSelected = false;
 
 // Run initial grid creation  
 function init() {
-    promptGridSize();
+    gridSize = gridSlider.value;
+    boxLength = containerWidth / gridSize;
     createBoxes();
     etchBoxes();
 };
 init();
-
-// Prompt user for Grid width, max 100 blocks
-function promptGridSize() {
-    do {
-        gridSize = prompt('Please the width of the grid (max 100):', '64');
-
-        if (0 >= gridSize || gridSize >= 101) {
-            alert('Please enter a number between 1 and 100. Thank you!');
-        }
-    }
-    while (0 >= gridSize || gridSize >= 101);
-
-    boxLength = containerWidth / gridSize;
-}
-
 
 
 // create boxs in container to create etch pad
@@ -168,3 +156,12 @@ function hexToRgb(hex) {
       b: parseInt(result[3], 16)
     } : null;
   }
+
+// Grid slider to change size of grid dynamically 
+
+gridSlider.addEventListener('input', changeGridSize);
+
+function changeGridSize() {
+    gridSliderValue.textContent = gridSlider.value;
+    clearGrid();
+}
