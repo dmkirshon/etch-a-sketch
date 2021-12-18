@@ -17,7 +17,7 @@ const gridSlider = document.querySelector('.grid-slider');
 const gridSliderValue = document.querySelector('.grid-slider-value');
 const containerWidth = containerDiv.offsetWidth;
 const defaultColor = 'grey';
-const defaultFilledColor = 'aqua';
+let defaultFilledColor = 'aqua';
 let filledColor = defaultFilledColor;
 let gridSize = 0;
 let boxLength = 0;
@@ -131,7 +131,8 @@ function changeEtchErase() {
 etchColorInput.addEventListener('change', changeEtchColor);
 
 function changeEtchColor() {
-    filledColor = this.value;
+    defaultFilledColor = this.value;
+    filledColor = defaultFilledColor;
     etchColorButton.style.backgroundColor = filledColor;
     const filledColorRGB = hexToRgb(filledColor);
 
