@@ -1,7 +1,7 @@
 /**
  * Script: Etch-a-sketch 
  * Author: David Kirshon
- * Date:Dec 15, 2021
+ * Date:Dec 18, 2021
  * This script allows for etching of the grid as well as controls
  * that bring more functionality to the user.
  */
@@ -26,8 +26,6 @@ let clickEtchOptionSelected = false;
 
 // Run initial grid creation  
 function init() {
-    gridSize = gridSlider.value;
-    boxLength = containerWidth / gridSize;
     createBoxes();
     etchBoxes();
 };
@@ -36,6 +34,8 @@ init();
 
 // create boxs in container to create etch pad
 function createBoxes() {
+    gridSize = gridSlider.value;
+    boxLength = containerWidth / gridSize;
     for (i = 0; i < gridSize * gridSize; i++) {
         let newDiv = document.createElement('div');
         newDiv.classList.toggle('box');
@@ -47,8 +47,37 @@ function createBoxes() {
 }
 
 
-// etch boxes with a color when hovered over to create pixel art
+// etch boxes with a color to create pixel art
 function etchBoxes() {
+    if (clickEtchOptionSelected) {
+        etchStyleButton.textContent = 'Hover-to-Etch';
+        containerDiv.childNodes.forEach(box => {
+            box.removeEventListener('mouseover', fillColor);
+            box.addEventListener('mousedown', clickEtchBoxes);
+            box.addEventListener('mouseup', stopEtchBoxes);
+        });
+    } else {
+        
+        hoverEtch();
+
+        // clean up click to etch 
+        etchStyleButton.textContent = 'Click-to-Etch';
+        containerDiv.childNodes.forEach(box => {
+            box.removeEventListener('mousedown', clickEtchBoxes);
+            box.removeEventListener('mouseup', stopEtchBoxes);
+        });
+    }
+}
+
+// Change the etch style between hover etch and click to etch.
+etchStyleButton.addEventListener('click', changeEtchStyle);
+
+function changeEtchStyle() {
+    clickEtchOptionSelected = !(clickEtchOptionSelected);
+    etchBoxes();
+}
+
+function hoverEtch() {
     containerDiv.childNodes.forEach(box => {
         box.addEventListener('mouseover', fillColor);
     });
@@ -57,6 +86,24 @@ function etchBoxes() {
 function fillColor() {
     this.style.backgroundColor = filledColor;
 }
+
+// Etch boxes when box selected and drag across grid
+function clickEtchBoxes(e) {
+    // stops the mousedown turning into a drag event
+    e.preventDefault();
+    // fills in the box where mouse is located
+    this.style.backgroundColor = filledColor;
+    // etches all the other boxes while mouse is down
+    hoverEtch();
+}
+
+// Stop etching boxes when invoked
+function stopEtchBoxes() {
+    containerDiv.childNodes.forEach(box => {
+        box.removeEventListener('mouseover', fillColor);
+    });
+}
+
 
 // clear button to default back to a clear grid
 clearButton.addEventListener('click', clearGrid);
@@ -69,50 +116,7 @@ function clearGrid() {
 }
 
 
-// Change the etch style between hover etch and click to etch.
-etchStyleButton.addEventListener('click', changeEtchStyle);
-
-
-function changeEtchStyle() {
-    clickEtchOptionSelected = !(clickEtchOptionSelected);
-    if (clickEtchOptionSelected) {
-        etchStyleButton.textContent = 'Hover-to-Etch';
-        containerDiv.childNodes.forEach(box => {
-            box.removeEventListener('mouseover', fillColor);
-            box.addEventListener('mousedown', clickEtchBoxes);
-            box.addEventListener('mouseup', stopEtchBoxes);
-        });
-    } else {
-        etchStyleButton.textContent = 'Click-to-Etch';
-        etchBoxes();
-        containerDiv.childNodes.forEach(box => {
-            box.removeEventListener('mousedown', clickEtchBoxes);
-            box.removeEventListener('mouseup', stopEtchBoxes);
-        });
-    }
-
-}
-
-
-// Etch boxes when box selected and drag across grid
-function clickEtchBoxes(e) {
-    // stops the mousedown turning into a drag event
-    e.preventDefault();
-    // fills in the box where mouse is located
-    this.style.backgroundColor = filledColor;
-    // etches all the other boxes while mouse is down
-    etchBoxes();
-}
-
-// Stop etching boxes when invoked
-function stopEtchBoxes() {
-    containerDiv.childNodes.forEach(box => {
-        box.removeEventListener('mouseover', fillColor);
-    });
-}
-
 // Eraser button turns etched box back to default grid color
-
 eraserButton.addEventListener('click', changeEtchErase);
 
 function changeEtchErase() {
